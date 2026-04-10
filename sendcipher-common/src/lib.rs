@@ -1,5 +1,6 @@
 /* Created on 2026.03.01 */
-/* Copyright Youcef Lemsafer, all rights reserved */
+// Copyright (c) 2026 Youcef Lemsafer
+// SPDX-License-Identifier: MIT
 
 use chrono::{DateTime, Utc};
 use serde_with::{DisplayFromStr, serde_as};
