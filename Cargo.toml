@@ -6,6 +6,8 @@
 name = "sendcipher-common"
 version = "0.1.0"
 edition = "2024"
+description = "Common types for the public API at sendcipher.com"
+license = "MIT"
 
 [dependencies]
 chrono = { version = "0.4.43", features = ["serde"] }
