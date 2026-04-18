@@ -4,13 +4,16 @@
 
 [package]
 name = "sendcipher-common"
-version = "0.1.0"
-edition = "2024"
+version = "0.1.1"
+edition = "2021"
+rust-version = "1.85"
 description = "Common types for the public API at sendcipher.com"
 license = "MIT"
+repository = "https://github.com/youcefl/sendcipher-common"
+
 
 [dependencies]
 chrono = { version = "0.4.43", features = ["serde"] }
 serde = { version = "1.0", features = ["derive"] }
-serde_with = "3.17.0"
+serde_with = "=3.17.0"
 serde_json = "1.0.149"
