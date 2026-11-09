@@ -4,7 +4,7 @@
 
 [package]
 name = "sendcipher-common"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.85"
 description = "Common types for the public API at sendcipher.com"
