@@ -63,10 +63,10 @@ pub struct UploadResponse {
     pub chunk_receipt: ChunkReceipt
 }
 
-/// Received on successful upload
+/// Request to commit an upload after all chunks have been uploaded
 #[serde_as]
 #[derive(serde::Serialize, serde::Deserialize)]
-pub struct PostUploadInfo {
+pub struct UploadCommitRequest {
     /// Upload session id
     pub upload_session_id: String,
     /// Size of the uploaded file
@@ -74,12 +74,13 @@ pub struct PostUploadInfo {
     pub size_in_bytes: u64,
     /// Expiration time hint in hours
     pub expiration_time_hours: u32,
-    /// List of chunks
+    /// List of chunks, must be sorted by id
     pub chunks: Vec<ChunkReceipt>,
     /// Manifest
     pub manifest: ChunkReceipt,
 }
 
+/// Response received upon committing an upload
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct UploadCommitResponse {
     pub success: bool,
