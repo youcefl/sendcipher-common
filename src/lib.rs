@@ -30,7 +30,10 @@ pub struct StartUploadRequest {
     pub size_in_bytes: u64,
     /// The desired maximum number of downloads for the file
     #[serde_as(as = "DisplayFromStr")]
-    pub desired_max_downloads: u64
+    pub desired_max_downloads: u64,
+    /// Desired expiration delay in seconds
+    #[serde_as(as = "DisplayFromStr")]
+    pub expiration_delay_seconds: u64,
 }
 
 #[serde_as]
@@ -45,9 +48,12 @@ pub struct ResponseToStartUploadRequest {
     pub remaining_quota_bytes: u64,
     /// Session id to use for the upload (is None in case of error)
     pub session_id: Option<String>,
-    /// The maximum number of downloads that can be assigned to the file
+    /// The maximum number of downloads to assign to the file
     #[serde_as(as = "DisplayFromStr")]
-    pub applicable_max_downloads: u64
+    pub max_downloads: u64,
+    /// Expiration delay to assign to the file in seconds
+    #[serde_as(as = "DisplayFromStr")]
+    pub expiration_delay_seconds: u64
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone)]
@@ -72,8 +78,6 @@ pub struct UploadCommitRequest {
     /// Size of the uploaded file
     #[serde_as(as = "DisplayFromStr")]
     pub size_in_bytes: u64,
-    /// Expiration time hint in hours
-    pub expiration_time_hours: u32,
     /// List of chunks, must be sorted by id
     pub chunks: Vec<ChunkReceipt>,
     /// Manifest
@@ -81,11 +85,14 @@ pub struct UploadCommitRequest {
 }
 
 /// Response received upon committing an upload
+#[serde_as]
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct UploadCommitResponse {
     pub success: bool,
     pub message: String,
     pub expiration_date: DateTime<Utc>,
+    #[serde_as(as = "DisplayFromStr")]
+    pub remaining_quota_bytes: u64
 }
 
 #[derive(Debug, Clone, Copy, serde::Serialize, serde::Deserialize)]
